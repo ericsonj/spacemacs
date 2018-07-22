@@ -5,10 +5,10 @@
  * Created on __(format-time-string "%B %e, %Y, %l:%M %p")__
  */
 
-#include "main.h"
-#include "sapi.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int main() {
+int main(int argc, char *argv[]) {
 
     
 }
