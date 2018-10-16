@@ -38,9 +38,9 @@
 /*==================[inclusions]=============================================*/
 
 //#include "__PROJECT-NAME__.h"   // <= own header (optional)
-#include "sapi.h"       // <= sAPI header
-#include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
+#include "FreeRTOSConfig.h"
+#include "sapi.h" // <= sAPI header
 #include "task.h"
 
 /*==================[macros and definitions]=================================*/
@@ -60,35 +60,35 @@ void ledTask1(void *taskParmPtr);
 /*==================[external functions definition]==========================*/
 
 /* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
-int main(void){
+int main(void) {
 
-   /* ------------- INICIALIZACIONES ------------- */
+    /* ------------- INICIALIZACIONES ------------- */
 
-   /* Inicializar la placa */
-   boardConfig();
+    /* Inicializar la placa */
+    boardConfig();
 
-   xTaskCreate(ledTask1,                 // FUNCTION
-               (const char *)"led1",     // TASK NAME
-               configMINIMAL_STACK_SIZE, // TASK STACK
-               NULL,                     // TASK ARGS
-               tskIDLE_PRIORITY + 1,     // TASK PRIORITY
-               NULL                      // SYSTEM TASK POINTER
-               );
+    xTaskCreate(ledTask1,                 // FUNCTION
+                (const char *)"led1",     // TASK NAME
+                configMINIMAL_STACK_SIZE, // TASK STACK
+                NULL,                     // TASK ARGS
+                tskIDLE_PRIORITY + 1,     // TASK PRIORITY
+                NULL                      // SYSTEM TASK POINTER
+    );
 
-   // Iniciar scheduler
-   vTaskStartScheduler();
+    // Iniciar scheduler
+    vTaskStartScheduler();
 
-   /* ------------- REPETIR POR SIEMPRE ------------- */
-   while (TRUE) {
-   }
+    /* ------------- REPETIR POR SIEMPRE ------------- */
+    while (TRUE) {
+    }
 
-   /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
-      por ningun S.O. */
-   return 0;
+    /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
+       por ningun S.O. */
+    return 0;
 }
 
 void ledTask1(void *taskParmPtr) {
-    while (TRUE) {       
+    while (TRUE) {
         gpioToggle(LED1);
         vTaskDelay(500 / portTICK_RATE_MS);
     }
