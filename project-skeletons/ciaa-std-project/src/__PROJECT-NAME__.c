@@ -38,7 +38,7 @@
 /*==================[inclusions]=============================================*/
 
 //#include "__PROJECT-NAME__.h"   // <= own header (optional)
-#include "sapi.h"       // <= sAPI header
+#include "sapi.h" // <= sAPI header
 
 /*==================[macros and definitions]=================================*/
 
@@ -55,21 +55,20 @@
 /*==================[external functions definition]==========================*/
 
 /* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
-int main(void){
+int main(void) {
 
-   /* ------------- INICIALIZACIONES ------------- */
+    /* ------------- INICIALIZACIONES ------------- */
 
-   /* Inicializar la placa */
-   boardConfig();
+    /* Inicializar la placa */
+    boardConfig();
 
-   /* ------------- REPETIR POR SIEMPRE ------------- */
-   while(1) {
+    /* ------------- REPETIR POR SIEMPRE ------------- */
+    while (1) {
+    }
 
-   }
-
-   /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
-      por ningun S.O. */
-   return 0 ;
+    /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
+       por ningun S.O. */
+    return 0;
 }
 
 /*==================[end of file]============================================*/
