@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# If CIAA Project
+if [ -d "../../libs" ]; then
+
+    if [ ! -L "libs" ]; then
+        echo "CREATE LINK libs"
+        ln -s ../../libs libs
+    fi
+
+    # generate .clang_complete
+    find ./libs/ -name "*.h" | awk '{ FS="/" }{ NF--; print }' | awk 'NF {print "-I"$0}' | sed -e "s/ /\\//g" | sort | uniq > .clang_complete
+    find . -name "*.h" | awk '{ FS="/" }{ NF--; print }' | awk 'NF {print "-I"$0}' | sed -e "s/ /\\//g" | sort | uniq >> .clang_complete
+
+    # generate .gtagsfiles
+    if [ ! -f ".gtagsfiles" ]; then
+        echo "CREATE .gtagsfiles"
+        find ./libs/ -name "*.[c|h]" > .gtagsfiles
+        echo "CREATE GTAGS"
+        gtags -f .gtagsfiles
+    fi
+
+    for file in $(find . -name "*.[c|h]"); do
+        echo "UPDATE GTAGS " $file
+        gtags --single-update $file
+    done
+
+fi
