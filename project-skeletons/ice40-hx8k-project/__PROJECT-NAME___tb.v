@@ -5,7 +5,7 @@
  * Created on __(format-time-string "%B %e, %Y, %l:%M %p")__
  */
 
-module __PROJECT-NAME___tb (/**PORTS**/);
+module __PROJECT-NAME___tb ();
 
    initial begin
 
